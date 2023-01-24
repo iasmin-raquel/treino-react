@@ -1,16 +1,18 @@
-import React from "react";
+import React,{useState} from "react";
 
 export default function App() {
 
-  const carros = ['crossfox', 'onix', 'hilux', 'rangerhover', 'uno']
+  const [nome, setNome] = useState('') 
 
-  const listaCarros = carros.map(
-    (c,i) => <li>{i} - {c}</li>
-  )
+  const handleChangeNome = (e)=> {
+    setNome(e.target.value)
+  }
 
   return(
     <>
-      <ul>{listaCarros}</ul>
+      <label>Digite seu nome</label>
+      <input type='text' name="fnome" value={nome} onChange={(e)=>handleChangeNome(e)}/>
+      <p>Nome Digitado: {nome}</p>
     </>
   )
 }
