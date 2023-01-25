@@ -1,18 +1,12 @@
-import React,{useState} from "react";
+import React from "react";
+import { Notas } from "./componentes/Notas";
 
 export default function App() {
-
-  const [nome, setNome] = useState('') 
-
-  const handleChangeNome = (e)=> {
-    setNome(e.target.value)
-  }
-
   return(
     <>
-      <label>Digite seu nome</label>
-      <input type='text' name="fnome" value={nome} onChange={(e)=>handleChangeNome(e)}/>
-      <p>Nome Digitado: {nome}</p>
+      <Notas>
+        <p>Iasmin</p>
+      </Notas>
     </>
   )
 }
