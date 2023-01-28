@@ -1,12 +1,12 @@
 import React from "react";
-import Carro from "./componentes/Carro";
+import Nome from "./componentes/Nome"
 
 export default function App() {
 
   return(
     <>
       <h1>Componentes de Carro</h1>
-      <Carro fator={10} ></Carro>
+      <Nome fator={10} ></Nome>
     </>
   )
 }
