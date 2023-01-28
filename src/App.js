@@ -1,12 +1,31 @@
-import React from "react";
-import Nome from "./componentes/Nome"
+import React, {useState} from "react";
+import Globais from "./componentes/Globais";
+import Info  from "./componentes/Info"
 
 export default function App() {
 
+  const [frase, setFrase] = useState(Globais.frase)
+
+  const gravarFrase = () => {
+    Globais.frase = frase
+  }
+
+  const verFrase = () => {
+    alert(Globais.frase)
+  }
+
   return(
     <>
-      <h1>Componentes de Carro</h1>
-      <Nome fator={10} ></Nome>
+      <Info></Info>
+      <hr/>
+      <p>Nome: {Globais.nome}</p>
+      <p>Sobrenome: {Globais.sobrenome}</p>
+      <p>Idade: {Globais.idade}</p>
+      <hr/>
+      <input type="text" value={frase} onChange={(e)=>{setFrase(e.target.value)}}></input>
+      <br></br>
+      <button onClick={()=>{gravarFrase()}} >Gravar Frase</button>
+      <button onClick={()=>{verFrase()}} >Mostrar Frase</button>
     </>
   )
 }
