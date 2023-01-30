@@ -1,31 +1,42 @@
-import React, {useState} from "react";
-import Globais from "./componentes/Globais";
-import Info  from "./componentes/Info"
+import React, {useState,useEffect} from 'react'
+import { Pagina1 } from './componentes/Pagina1'
+import { Pagina2 } from './componentes/Pagina2'
 
-export default function App() {
+export default function App () {
+  const [pagina,setPagina] = useState(0)
 
-  const [frase, setFrase] = useState(Globais.frase)
-
-  const gravarFrase = () => {
-    Globais.frase = frase
+  useEffect((
+    () => {
+      const url = window.location.href
+      const res = url.split("?")
+      setPagina(parseInt(res[1]))
+    }
+  ), [])
+  
+  const linkPaginas = (p) => {
+    if(p===1){
+      window.open("http://localhost:3000?1", "_self")
+    } else {
+      window.open("http://localhost:3000?2", "_self")
+    }
   }
 
-  const verFrase = () => {
-    alert(Globais.frase)
-  }
+  const retornarPagina = () => {
+    if(pagina===1) {
+      return <Pagina1/>
+    } else if(pagina===2) {
+      return <Pagina2/>
+    } else {
+      return <div>
+        <button onClick={()=>{linkPaginas(1)}} >Página 1</button>
+        <button onClick={()=>{linkPaginas(2)}} >Página 2</button>
+      </div>
+    }
+  } 
 
-  return(
-    <>
-      <Info></Info>
-      <hr/>
-      <p>Nome: {Globais.nome}</p>
-      <p>Sobrenome: {Globais.sobrenome}</p>
-      <p>Idade: {Globais.idade}</p>
-      <hr/>
-      <input type="text" value={frase} onChange={(e)=>{setFrase(e.target.value)}}></input>
-      <br></br>
-      <button onClick={()=>{gravarFrase()}} >Gravar Frase</button>
-      <button onClick={()=>{verFrase()}} >Mostrar Frase</button>
-    </>
+  return (
+      <>
+        {retornarPagina()}
+      </>
   )
 }
